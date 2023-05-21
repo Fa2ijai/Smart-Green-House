@@ -66,13 +66,13 @@ function App() {
                   a 15.9155 15.9155 0 0 1 0 -31.831"
               />
               <path class="circle"
-                stroke-dasharray={temperature+",100"}
+                stroke-dasharray={(temperature/25)*100+",100"}
                 d="M18 2.0845
                   a 15.9155 15.9155 0 0 1 0 31.831
                   a 15.9155 15.9155 0 0 1 0 -31.831"
               />
               <text x="18" y="15" class="sensorName">Temperature</text>
-              <text x="18.5" y="23.35" class="percentage">{temperature}%</text>
+              <text x="18.5" y="23.35" class="percentage">{temperature}°C</text>
             </svg>
           </div>
           
