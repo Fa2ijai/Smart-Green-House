@@ -43,6 +43,9 @@ function useSensorData() {
 }
 
 function App() {  
+  useEffect(() => {
+    document.title = "Smart Green House";
+  }, []);
   const {temperature,moisture,light,watering,lighting} = useSensorData();
   function Watering(){
     set(ref(database, 'isWatering'),!watering);
