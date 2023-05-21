@@ -56,7 +56,6 @@ function App() {
       <div class = "Name-title">
           <div style={{padding : "0 0 0 20px"}}>SMART <img src={leaf}  alt="leaf" /></div>
           <div>GREEN HOUSE</div>
-          
       </div>
       <div class="flex-wrapper">
           <div class="single-chart">
@@ -96,9 +95,7 @@ function App() {
               <text x="18.5" y="23.35" class="percentage">{moisture}%</text> 
             </svg>
           </div>
-        </div>
-        <div class="flex-wrapper">
-        <div class="single-chart">
+          <div class="single-chart">
             <svg viewBox="0 0 36 36" class="circular-chart yellow">
               <path class="circle-bg"
                 d="M18 2.0845
@@ -116,7 +113,7 @@ function App() {
             </svg>
           </div>
         </div>
-        <div class="flex-wrapper" style={{margin : "0 30px 0 30px"}}>
+        <div class="flex-wrapper">
           <button class="waterButton" style={{border: watering?"5px solid aquamarine":"none"}} onClick={Watering}>
             <img src = {can} style={{width:"100%",backgroundColor : "white"}}alt='can'/>
           </button>
