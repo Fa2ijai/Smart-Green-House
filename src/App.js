@@ -3,6 +3,8 @@ import sun from './img/brightness.png';
 import can from './img/watering-can.png';
 import './App.css';
 import React,{ useState, useRef, useEffect} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { initializeApp } from 'firebase/app';
 import { useObjectVal } from 'react-firebase-hooks/database';
@@ -29,6 +31,7 @@ function useSensorData() {
   const [lightSensor, load_3] = useObjectVal(ref(database, 'light'));
   const [watering, load_4] = useObjectVal(ref(database, 'isWatering'));
   const [lighting, load_5] = useObjectVal(ref(database, 'isLighting'));
+  const [auto, load_6] = useObjectVal(ref(database, 'isAuto'));
   console.log("Get Data from Firebase " + Date().toString());
   var temperatureData = temperatureSensor;
   var moistureData = moistureSensor;
@@ -38,7 +41,8 @@ function useSensorData() {
     moisture: moistureData,
     light: lightData,
     watering: watering,
-    lighting: lighting
+    lighting: lighting,
+    auto: auto
   };
 }
 
@@ -46,20 +50,22 @@ function App() {
   useEffect(() => {
     document.title = "Smart Green House";
   }, []);
-  const {temperature,moisture,light,watering,lighting} = useSensorData();
+  const {temperature,moisture,light,watering,lighting,auto} = useSensorData();
   function Watering(){
     set(ref(database, 'isWatering'),!watering);
   }
   function Lighting(){
     set(ref(database, 'isLighting'),!lighting);
   }
-
+  const notify = () => toast.warning("Now is auto watering!!!");
+  
   return (
     <div className="App">
       <div class = "Name-title">
           <div style={{padding : "0 0 0 20px"}}>SMART <img src={leaf}  alt="leaf" /></div>
           <div>GREEN HOUSE</div>
       </div>
+      <ToastContainer progressClassName="toastProgress" bodyClassName="toastBody"/>
       <div class="flex-wrapper">
           <div class="single-chart">
             <svg viewBox="0 0 36 36" class="circular-chart orange">
@@ -117,12 +123,20 @@ function App() {
           </div>
         </div>
         <div class="flex-wrapper">
-          <button class="waterButton" style={{border: watering?"5px solid aquamarine":"none"}} onClick={Watering}>
+          <button class="waterButton" style={{border: watering?"5px solid aquamarine":"none"}} onClick={auto?notify:Watering}>
             <img src = {can} style={{width:"100%",backgroundColor : "white"}}alt='can'/>
           </button>
           <button class="waterButton" style={{border: lighting?"5px solid aquamarine":"none"}} onClick={Lighting}>
             <img src = {sun} style={{width:"100%",backgroundColor : "white"}}alt='can'/>
           </button>
+        </div>
+        <div class="flex-wrapper">
+        <div class = "status">
+            <div class="status-circle" style={{background: watering?"#59EB34":"#E92215"}}></div>{watering?"ON":"OFF"}
+          </div>
+          <div class = "status">
+          <div class="status-circle" style={{background: lighting?"#59EB34":"#E92215"}}></div>{lighting?"ON":"OFF"}
+          </div>
         </div>
         {/* <p>
           Edit and save to reload.
@@ -136,6 +150,7 @@ function App() {
           Learn React
         </a> */}
     </div>
+    
     
   );
 }

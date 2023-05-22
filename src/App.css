@@ -1,24 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-*{
-  background-color: #232323;
-}
 
+body {
+  overflow: hidden; /* Hide scrollbars */
+  }
 
 .App {
   text-align: center;
-  background-color: #232323;
   height: 100vh;
   width: 100vw;
-  padding-top: 25px;
+  padding-top: 30px;
+  background-color: #232323;
 }
 
 .Name-title{
     color: white;
-    font-size: 10vw;
+    font-size: 2.5rem;
     font-family:'Inter', sans-serif;
     font-weight: 500;
-    margin-top: 0px;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
 }
 @media screen and (min-width: 700px) {
   .Name-title {
@@ -39,7 +38,7 @@
   .single-chart {
     width: 175px;
     min-width: 130px;
-    margin: 0 10px 0 10px;  
+    margin: 0 10px 0 10px;
   }
   
   .circular-chart {
@@ -105,6 +104,35 @@
     text-align: center;
     text-decoration: none;
     margin:30px;
-
     cursor: pointer;
+  }
+
+  .status{
+    display: flex;
+    color: white;
+    padding: 0 25px;
+    margin:0 37px;
+    border-radius: 50%;
+    
+  }
+
+  .status-circle{
+    border-radius: 50%;
+    border: none;
+    width:20px;
+    height:20px;
+    margin-right: 10px;
+  }
+  
+  .Toastify__toast--warning {
+    background: #faf8d3 !important;
+  }
+  .toastBody {
+    font-family:'Inter', sans-serif;
+    color: black; /* #10171D */
+    font-weight: 500;
+    font-size: 0.875rem !important;
+  }
+  .toastProgress {
+    background: #eeb60d !important;
   }
