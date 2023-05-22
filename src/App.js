@@ -48,7 +48,7 @@ function useSensorData() {
 
 function App() {  
   useEffect(() => {
-    document.title = "Smart Green House";
+    document.title = "Smart Greenhouse";
   }, []);
   const {temperature,moisture,light,watering,lighting,auto} = useSensorData();
   function Watering(){
@@ -63,7 +63,7 @@ function App() {
     <div className="App">
       <div class = "Name-title">
           <div style={{padding : "0 0 0 20px"}}>SMART <img src={leaf}  alt="leaf" /></div>
-          <div>GREEN HOUSE</div>
+          <div>GREENHOUSE</div>
       </div>
       <ToastContainer progressClassName="toastProgress" bodyClassName="toastBody"/>
       <div class="flex-wrapper">
